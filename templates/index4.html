@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>智慧型房屋貸款風險評估系統</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="static/css/main.css" />
+		<noscript><link rel="stylesheet" href="static/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="/index1">Welcome</a></li>
+							<li><a href="/index2">Important Value</a></li>
+							<li><a href="/index3">Entry</a></li>
+							<li><a>Prediction</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+
+				<!-- Three -->
+					<section id="three" class="wrapper style1 fade-up">
+						<div class="inner">
+							<h2>預測結果</h2>
+							<p>透過調整的參數進入機器學習訓練出的預測模組，評估客戶違約機率，決定借貸與否。</p>
+							<div class="split style1">
+<!-- Styles -->
+<style>
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
+</style>
+
+<!-- Resources -->
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+<!-- HTML -->
+<div id="chartdiv"></div>
+
+<!-- Chart code -->
+<script>
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+var chartMin = 0;
+var chartMax = 100;
+
+
+
+var data = {
+  score: {{predictionnum}},  /* 測出來的值放這 */
+  gradingData: [
+    {
+      title: "低機率違約",
+      color: "#00DD00",
+      lowScore: 0,
+      highScore: 30
+    },
+    {
+      title: "有機率違約",
+      color: "#FFBB00",
+      lowScore:  30,
+      highScore: 70
+    },
+    {
+      title: "高機率違約",
+      color: "#FF0000",
+      lowScore: 70,
+      highScore: 100
+    }
+  ]
+};
+
+/**
+Grading Lookup
+ */
+function lookUpGrade(lookupScore, grades) {
+  // Only change code below this line
+  for (var i = 0; i < grades.length; i++) {
+    if (
+      grades[i].lowScore < lookupScore &&
+      grades[i].highScore >= lookupScore
+    ) {
+      return grades[i];
+    }
+  }
+  return null;
+}
+
+// create chart
+var chart = am4core.create("chartdiv", am4charts.GaugeChart);
+chart.hiddenState.properties.opacity = 0;
+chart.fontSize = 11;
+chart.innerRadius = am4core.percent(80);
+chart.resizable = true;
+
+/**
+ * Normal axis
+ */
+
+var axis = chart.xAxes.push(new am4charts.ValueAxis());
+axis.min = chartMin;
+axis.max = chartMax;
+axis.strictMinMax = true;
+axis.renderer.radius = am4core.percent(80);
+axis.renderer.inside = true;
+axis.renderer.line.strokeOpacity = 0.1;
+axis.renderer.ticks.template.disabled = false;
+axis.renderer.ticks.template.strokeOpacity = 1;
+axis.renderer.ticks.template.strokeWidth = 0.5;
+axis.renderer.ticks.template.length = 5;
+axis.renderer.grid.template.disabled = true;
+axis.renderer.labels.template.radius = am4core.percent(15);
+axis.renderer.labels.template.fontSize = "0.9em";
+
+/**
+ * Axis for ranges
+ */
+
+var axis2 = chart.xAxes.push(new am4charts.ValueAxis());
+axis2.min = chartMin;
+axis2.max = chartMax;
+axis2.strictMinMax = true;
+axis2.renderer.labels.template.disabled = true;
+axis2.renderer.ticks.template.disabled = true;
+axis2.renderer.grid.template.disabled = false;
+axis2.renderer.grid.template.opacity = 0.5;
+axis2.renderer.labels.template.bent = true;
+axis2.renderer.labels.template.fill = am4core.color("#000");
+axis2.renderer.labels.template.fontWeight = "bold";
+axis2.renderer.labels.template.fillOpacity = 0.3;
+
+
+
+/**
+Ranges
+*/
+
+for (let grading of data.gradingData) {
+  var range = axis2.axisRanges.create();
+  range.axisFill.fill = am4core.color(grading.color);
+  range.axisFill.fillOpacity = 0.8;
+  range.axisFill.zIndex = -1;
+  range.value = grading.lowScore > chartMin ? grading.lowScore : chartMin;
+  range.endValue = grading.highScore < chartMax ? grading.highScore : chartMax;
+  range.grid.strokeOpacity = 0;
+  range.stroke = am4core.color(grading.color).lighten(-0.1);
+  range.label.inside = true;
+  range.label.text = grading.title.toUpperCase();
+  range.label.inside = true;
+  range.label.location = 0.5;
+  range.label.inside = true;
+  range.label.radius = am4core.percent(10);
+  range.label.paddingBottom = -5; // ~half font size
+  range.label.fontSize = "0.9em";
+}
+
+var matchingGrade = lookUpGrade(data.score, data.gradingData);
+
+/**
+ * Label 1
+ */
+
+var label = chart.radarContainer.createChild(am4core.Label);
+label.isMeasured = false;
+label.fontSize = "6em";
+label.x = am4core.percent(50);
+label.paddingBottom = 15;
+label.horizontalCenter = "middle";
+label.verticalCenter = "bottom";
+//label.dataItem = data;
+label.text = data.score.toFixed(1);
+//label.text = "{score}";
+label.fill = am4core.color(matchingGrade.color);
+
+/**
+ * Label 2
+ */
+
+var label2 = chart.radarContainer.createChild(am4core.Label);
+label2.isMeasured = false;
+label2.fontSize = "2em";
+label2.horizontalCenter = "middle";
+label2.verticalCenter = "bottom";
+label2.text = matchingGrade.title.toUpperCase();
+label2.fill = am4core.color(matchingGrade.color);
+
+
+/**
+ * Hand
+ */
+
+var hand = chart.hands.push(new am4charts.ClockHand());
+hand.axis = axis2;
+hand.innerRadius = am4core.percent(55);
+hand.startWidth = 8;
+hand.pin.disabled = true;
+hand.value = data.score;
+hand.fill = am4core.color("#444");
+hand.stroke = am4core.color("#000");
+
+hand.events.on("positionchanged", function(){
+  label.text = axis2.positionToValue(hand.currentPosition).toFixed(1);
+  var value2 = axis.positionToValue(hand.currentPosition);
+  var matchingGrade = lookUpGrade(axis.positionToValue(hand.currentPosition), data.gradingData);
+  label2.text = matchingGrade.title.toUpperCase();
+  label2.fill = am4core.color(matchingGrade.color);
+  label2.stroke = am4core.color(matchingGrade.color);  
+  label.fill = am4core.color(matchingGrade.color);
+})
+
+setInterval(function() {
+    var value = data.score + Math.random() * (3);
+    hand.showValue(value, 1000, am4core.ease.cubicOut);
+}, 500);
+
+}); // end am4core.ready()
+</script>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="static/js/jquery.min.js"></script>
+			<script src="static/js/jquery.scrollex.min.js"></script>
+			<script src="static/js/jquery.scrolly.min.js"></script>
+			<script src="static/js/browser.min.js"></script>
+			<script src="static/js/breakpoints.min.js"></script>
+			<script src="static/js/util.js"></script>
+			<script src="static/js/main.js"></script>
+
+	</body>
+</html>

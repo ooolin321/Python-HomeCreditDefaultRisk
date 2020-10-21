@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>智慧型房屋貸款風險評估系統</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="static/css/main.css" />
+		<noscript><link rel="stylesheet" href="static/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="/index1">Welcome</a></li>
+							<li><a href="/index2">Important Value</a></li>
+							<li><a href="/index3">Entry</a></li>
+							<li><a>Prediction</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+			<style>
+
+#chartdiv {
+  width: 90%;
+  height: 600px;
+  margin-left: 240px;
+  context.fillStyle = 'white';
+}
+			</style>
+<!-- Resources -->
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
+<!-- HTML -->
+<h1 align="center">智慧型房屋貸款風險評估系統 </h1>
+<h3 align="center">Importance Feature </h3>
+<div id="chartdiv"></div>
+
+<!-- Chart code -->
+<script>
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_dark);
+
+// Themes end
+
+var chart = am4core.create("chartdiv", am4charts.XYChart);
+chart.padding(40, 40, 40, 40);
+
+
+var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+categoryAxis.renderer.grid.template.location = 0;
+categoryAxis.dataFields.category = "network";
+categoryAxis.renderer.minGridDistance = 1;
+categoryAxis.renderer.inversed = true;
+categoryAxis.renderer.grid.template.disabled = true;
+
+var valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
+valueAxis.min = 0;
+
+var series = chart.series.push(new am4charts.ColumnSeries());
+series.dataFields.categoryY = "network";
+series.dataFields.valueX = "MAU";
+series.tooltipText = "{valueX.value}"
+series.columns.template.strokeOpacity = 0;
+series.columns.template.column.cornerRadiusBottomRight = 5;
+series.columns.template.column.cornerRadiusTopRight = 5;
+
+
+var labelBullet = series.bullets.push(new am4charts.LabelBullet())
+labelBullet.label.horizontalCenter = "left";
+labelBullet.label.dx = 10;
+labelBullet.label.text = "{values.valueX.workingValue.formatNumber('#.0as')}";
+labelBullet.locationX = 1;
+
+// as by default columns of the same series are of the same color, we add adapter which takes colors from chart.colors color set
+series.columns.template.adapter.add("fill", function(fill, target){
+  return chart.colors.getIndex(target.dataItem.index);
+});
+
+categoryAxis.sortBySeries = series;
+chart.data = [
+    {
+      "network": "CREDIT_TERM",
+      "MAU": 2023
+    },
+    {
+      "network": "EXT_SOURCE_1",
+      "MAU": 1669
+    },
+    {
+      "network": "EXT_SOURCE_3",
+      "MAU": 1436
+    },
+    {
+      "network": "EXT_SOURCE_2",
+      "MAU": 1417
+    },
+    {
+      "network": "DAYS_BIRTH",
+      "MAU": 1172
+    },
+    {
+      "network": "AMT_ANNUITY",
+      "MAU": 861
+    },
+    {
+      "network": "DAYS_ID_PUBLISH",
+      "MAU": 705
+    },
+    {
+      "network": "DAYS_EMPLOYED",
+      "MAU": 700
+    },
+    {
+      "network": "POS_CNT_INSTALMENT_FUTURE",
+      "MAU": 697
+    },
+    {
+      "network": "ANNUITY_INCOME_PERCENT",
+      "MAU": 690
+    },
+    {
+      "network": "AMT_CREDIT",
+      "MAU": 670
+    },
+    {
+      "network": "DAYS_REGISTRATION",
+      "MAU": 665
+    },
+    {
+      "network": "AMT_GOODS_PRICE",
+      "MAU": 648
+    },
+    {
+      "network": "PREV_CNT_PAYMENT",
+      "MAU": 641
+    },
+    {
+      "network": "BUREAU_AMT_CREDIT_SUM_DEBT",
+      "MAU": 628
+    },
+    {
+      "network": "INSTA_NUM_INSTALMENT_VERSION",
+      "MAU": 628
+    },
+    {
+      "network": "DAYS_EMPLOYED_PERCENT",
+      "MAU": 588
+    },
+    {
+      "network": "INSTA_AMT_PAYMENT",
+      "MAU": 577
+    },
+    {
+      "network": "DAYS_LAST_PHONE_CHANGE",
+      "MAU": 553
+    },
+    {
+      "network": "PREV_AMT_ANNUITY",
+      "MAU": 502
+    }
+  ]
+
+
+}); // end am4core.ready()
+</script>
+
+
+
+		<!-- Scripts -->
+			<script src="static/js/jquery.min.js"></script>
+			<script src="static/js/jquery.scrollex.min.js"></script>
+			<script src="static/js/jquery.scrolly.min.js"></script>
+			<script src="static/js/browser.min.js"></script>
+			<script src="static/js/breakpoints.min.js"></script>
+			<script src="static/js/util.js"></script>
+			<script src="static/js/main.js"></script>
+
+	</body>
+</html>

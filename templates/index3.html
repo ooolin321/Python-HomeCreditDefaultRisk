@@ -1,0 +1,235 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>智慧型房屋貸款風險評估系統</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="static/css/main.css" />
+		<noscript><link rel="stylesheet" href="static/css/noscript.css" /></noscript>
+	</head>
+	<style>
+#chartdiv {
+  width: 100%;
+  height: 600px;
+  context.fillStyle = 'white';
+}
+
+.button {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 200px;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 10px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: #f22f22;
+  border-radius: 25px;
+  border: 0px solid #000101;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 20px;
+  width: 10px;
+  border-radius: 7px;
+  background: #65001c;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -3.6px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #f22f22;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 12.8px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: #ac51b5;
+  border-radius: 25px;
+  border: 0px solid #000101;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 20px;
+  width: 39px;
+  border-radius: 7px;
+  background: #65001c;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 12.8px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  border-width: 39px 0;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #f22f22;
+  border: 0px solid #000101;
+  border-radius: 50px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range]::-ms-fill-upper {
+  background: #f22f22;
+  border: 0px solid #000101;
+  border-radius: 50px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 20px;
+  width: 39px;
+  border-radius: 7px;
+  background: #65001c;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #f22f22;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #f22f22;
+}
+
+body {
+  padding: 30px;
+}
+
+</style>
+	<body class="is-preload">
+
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="/index1">Welcome</a></li>
+							<li><a href="/index2">Important Value</a></li>
+							<li><a href="/index3">Entry</a></li>
+							<li><a>Prediction</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+
+				<!-- Two -->
+					<section id="two" class="wrapper style3 fade-up">
+						<div class="inner">
+							<h1 align="center">智慧型房屋貸款風險評估系統 </h1>	
+<h3 align="center">條件設定 </h3>
+<form action="index4" >
+	<table border="1">
+		<tr>
+			<td>信用條件分數</td>
+			<td><input type="range" name="x" value="0" max="500" min="-500"></td>
+			<td>金融機構A評分</td>
+			<td><input type ="range" name="x" value="0" max="500" min="-500"></td>
+		</tr>
+		<tr>	
+			<td>金融機構B評分</td>
+			<td><input type ="range" name="x" value="0" max="500" min="-500"></td>
+			<td>金融機構C評分</td>
+			<td><input type ="range" name="x" value="0" max="500" min="-500"></td>
+		</tr>
+		<tr>	
+			<td>出生天數</td>
+			<td><input type ="range" name="x" value="10000" max="25229" min="7489"></td>
+			<td>貸款年金</td>
+			<td><input type ="range" name="x" value="5000" max="258025" min="1615"></td>
+		</tr>
+		<tr>	
+			<td>申請貸款前天數曾修改個人資料</td>
+			<td><input type ="range" name="x" value="300" max="7197" min="0"></td>
+			<td>在職天數</td>
+			<td><input type ="range" name="x" value="1500" max="17912" min="0"></td>
+		</tr>
+		<tr>	
+			<td>分期付款</td>
+			<td><input type ="range" name="x" value="0" max="100" min="-100"></td>
+			<td>年金現值收入</td>
+			<td><input type ="range" name="x" value="50000" max="4050000" min="0"></td>
+		</tr>
+		<tr>	
+			<td>貸款信用額</td>
+			<td><input type ="range" name="x" value="1000000" max="4050000" min="45000"></td>
+			<td>抵押設定金額</td>
+			<td><input type ="range" name="x" value="1000000" max="4050000" min="45000"></td>
+		</tr>
+		<tr>	
+			<td>註冊天數</td>
+			<td><input type ="range" name="x" value="500" max="25229" min="0"></td>
+			<td>客戶在前家銀行付多少錢</td>
+			<td><input type ="range" name="x" value="10000" max="1000000" min="0"></td>
+		</tr>
+		<tr>	
+			<td>ATM信用額度債務</td>
+			<td><input type ="range" name="x" value="0" max="100" min="-100"></td>
+			<td>先前信用分期付款</td>
+			<td><input type ="range" name="x" value="0" max="100" min="-100"></td>
+		</tr>
+		<tr>	
+			<td>就業天數%數</td>
+			<td><input type ="range" name="x" value="0" max="100" min="-100"></td>
+			<td>分期付款金額</td>
+			<td><input type ="range" name="x" value="0" max="100" min="-100"></td>
+		</tr>
+		<tr>	
+			<td>客戶在申貸幾天前更換手機</td>
+			<td><input type ="range" name="x" value="300" max="4292" min="0"></td>
+			<td>在前家銀行的貸款年金</td>
+			<td><input type ="range" name="x" value="0" max="100" min="-100"></td>
+		</tr>
+	</table>
+
+    <button class="button">確定提交</button>
+
+
+</form>
+						</div>
+					</section>
+
+
+		<!-- Scripts -->
+			<script src="static/js/jquery.min.js"></script>
+			<script src="static/js/jquery.scrollex.min.js"></script>
+			<script src="static/js/jquery.scrolly.min.js"></script>
+			<script src="static/js/browser.min.js"></script>
+			<script src="static/js/breakpoints.min.js"></script>
+			<script src="static/js/util.js"></script>
+			<script src="static/js/main.js"></script>
+
+	</body>
+</html>
